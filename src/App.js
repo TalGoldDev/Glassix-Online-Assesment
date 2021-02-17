@@ -1,8 +1,7 @@
-import { findGeoLocation } from "./requests";
+import { React, useState, useEffect } from "react";
+import { findGeoLocation, findUsersIPAddress } from "./requests";
 
-function App() {
-  findGeoLocation("213.51.128.86");
-
+const App = () => {
   return (
     <div className="App">
       <header className="App-header"></header>
@@ -11,6 +10,8 @@ function App() {
       {/* Display User Location On The Map - City & Country Names */}
     </div>
   );
-}
+
+  return <div></div>;
+};
 
 export default App;
