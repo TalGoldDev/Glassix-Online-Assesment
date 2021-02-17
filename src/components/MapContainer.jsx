@@ -1,4 +1,4 @@
-import {React, useState} from 'react'
+import React from 'react'
 import {getGoogleMapURL} from '../requests';
 import "./MapContainer.css"
 
@@ -16,7 +16,7 @@ export const MapContainer = (props) => {
 				src={googleMapURL}
 				title="google-map"
         frameborder="0"
- 
+
         style={{border:0}}
 			/>
     </div>

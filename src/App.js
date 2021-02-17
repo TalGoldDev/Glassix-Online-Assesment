@@ -1,13 +1,12 @@
+import "./App.css";
 import { React, useState, useEffect } from "react";
+import UserData from "./components/UserDataDisplay";
 import { MapContainer } from "./components/MapContainer";
 import {
   findGeoLocation,
   findUsersIPAddress,
   getGoogleMapURL,
 } from "./requests";
-
-import "./App.css";
-import UserData from "./components/UserDataDisplay";
 
 const App = () => {
   const [geoData, setGeoData] = useState({});
