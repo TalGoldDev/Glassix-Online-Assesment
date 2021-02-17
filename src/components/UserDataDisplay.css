@@ -1,0 +1,12 @@
+.user-data {
+  display: flex;
+  padding-top: 1vh;
+  padding-bottom: 1vh;
+  justify-content: space-between;
+  padding-right: 1vw;
+  padding-left: 1vw;
+}
+
+.user-data p {
+  padding-right: 1vw;
+}

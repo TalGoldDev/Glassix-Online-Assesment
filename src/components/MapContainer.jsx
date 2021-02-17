@@ -1,6 +1,6 @@
 import {React, useState} from 'react'
 import {getGoogleMapURL} from '../requests';
-
+import "./MapContainer.css"
 
 export const MapContainer = (props) => {
 
@@ -10,14 +10,13 @@ export const MapContainer = (props) => {
   );
 
   return (
-    <div>
-      <p>Map</p>
+    <div className="map-container">
       <iframe
+      className="google-map"
 				src={googleMapURL}
 				title="google-map"
-				width="400vw"
-				height="400vh"
         frameborder="0"
+ 
         style={{border:0}}
 			/>
     </div>

@@ -6,6 +6,9 @@ import {
   getGoogleMapURL,
 } from "./requests";
 
+import "./App.css";
+import UserData from "./components/UserDataDisplay";
+
 const App = () => {
   const [geoData, setGeoData] = useState({});
   const [loading, setLoading] = useState(true);
@@ -26,21 +29,16 @@ const App = () => {
   } else {
     return (
       <div className="App">
-        <header className="App-header"></header>
-        <div>
-          <p>User's location:</p>
-          <p>City: {geoData.city}</p>
-          <p>Country:{geoData.country}</p>
-          <p>latitude:{geoData.location.latitude}</p>
-          <p>longitude:{geoData.location.longitude}</p>
+        <div className="top-bar">
+          {geoData.country}, {geoData.city}
         </div>
-
         <MapContainer location={geoData.location} />
+        <UserData data={geoData} />
+
+        <div className="background"></div>
       </div>
     );
   }
-
-  return <div></div>;
 };
 
 export default App;
