@@ -20,7 +20,7 @@ export const findGeoLocation = async (ipAddress) => {
 
   const geoLocation = {
     city: data.city,
-    country_name: data.country_name,
+    country: data.country_name,
     location: { latitude: data.latitude, longitude: data.longitude },
   };
 
