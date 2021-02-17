@@ -2,11 +2,7 @@ import "./App.css";
 import { React, useState, useEffect } from "react";
 import UserData from "./components/UserDataDisplay";
 import { MapContainer } from "./components/MapContainer";
-import {
-  findGeoLocation,
-  findUsersIPAddress,
-  getGoogleMapURL,
-} from "./requests";
+import { findGeoLocation, findUsersIPAddress } from "./requests";
 
 const App = () => {
   const [geoData, setGeoData] = useState({});

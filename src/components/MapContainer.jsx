@@ -15,7 +15,7 @@ export const MapContainer = (props) => {
       className="google-map"
 				src={googleMapURL}
 				title="google-map"
-        frameborder="0"
+        frameBorder="0"
 
         style={{border:0}}
 			/>
