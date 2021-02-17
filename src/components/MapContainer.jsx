@@ -1,22 +1,19 @@
 import {React, useState} from 'react'
-
-const GOOGLE_API_KEY = process.env.REACT_APP_GOOGLE_API_KEY;
-
-const BASE_URL = 'https://www.google.com/maps/embed/v1/place';
-  
-export const getGoogleMapURL = (lat,lang) => {
-	return `${BASE_URL}?key=${GOOGLE_API_KEY}&q=${lat},${lang}`;
-};
+import {getGoogleMapURL} from '../requests';
 
 
-export const MapContainer = () => {
+export const MapContainer = (props) => {
 
-	const googleUrl = getGoogleMapURL(31.9632,34.804);
+  const googleMapURL = getGoogleMapURL(
+   props.location.latitude,
+   props.location.longitude
+  );
+
   return (
     <div>
       <p>Map</p>
       <iframe
-				src={googleUrl}
+				src={googleMapURL}
 				title="google-map"
 				width="400vw"
 				height="400vh"

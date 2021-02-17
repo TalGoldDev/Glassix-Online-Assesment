@@ -1,19 +1,24 @@
 import { React, useState, useEffect } from "react";
 import { MapContainer } from "./components/MapContainer";
-import { findGeoLocation, findUsersIPAddress } from "./requests";
+import {
+  findGeoLocation,
+  findUsersIPAddress,
+  getGoogleMapURL,
+} from "./requests";
 
 const App = () => {
   const [geoData, setGeoData] = useState({});
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    async function fetchData() {
+    async function fetchUserData() {
       const usersIP = await findUsersIPAddress();
       const geoData = await findGeoLocation(usersIP);
+
       setGeoData(geoData);
       setLoading(false);
     }
-    fetchData();
+    fetchUserData();
   }, []);
 
   if (loading) {
@@ -30,8 +35,7 @@ const App = () => {
           <p>longitude:{geoData.location.longitude}</p>
         </div>
 
-        {/* Display User Location On The Map - City & Country Names */}
-        <MapContainer />
+        <MapContainer location={geoData.location} />
       </div>
     );
   }
