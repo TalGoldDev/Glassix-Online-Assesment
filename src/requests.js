@@ -14,21 +14,39 @@ export const getGoogleMapURL = (lat, lang) => {
 };
 
 export const findUsersIPAddress = async () => {
-  const res = await fetch(userIPRequestURL());
-  const data = await res.json();
+  try {
+    const res = await fetch(userIPRequestURL());
+    handleErrors(res);
+    const data = await res.json();
 
-  return data.ip;
+    return data.ip;
+  } catch (e) {
+    return "error";
+  }
 };
 
 export const findGeoLocation = async (ipAddress) => {
-  const res = await fetch(geoLocationRequestURL(ipAddress));
-  const data = await res.json();
+  try {
+    const res = await fetch(geoLocationRequestURL(ipAddress));
+    handleErrors(res);
 
-  const geoLocation = {
-    city: data.city,
-    country: data.country_name,
-    location: { latitude: data.latitude, longitude: data.longitude },
-  };
+    const data = await res.json();
 
-  return geoLocation;
+    const geoLocation = {
+      city: data.city,
+      country: data.country_name,
+      location: { latitude: data.latitude, longitude: data.longitude },
+    };
+
+    return geoLocation;
+  } catch (e) {
+    return "error";
+  }
 };
+
+function handleErrors(response) {
+  if (!response.ok) {
+    throw Error(response.statusText);
+  }
+  return response;
+}
