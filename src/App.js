@@ -1,53 +1,14 @@
 import "./App.css";
-import { React, useState, useEffect } from "react";
+import { React, useState } from "react";
 import UserData from "./components/UserDataDisplay";
 import { MapContainer } from "./components/MapContainer";
-import { findGeoLocation, findUsersIPAddress } from "./requests";
+import useGeoData from "./hooks/useGeoData";
 
 const App = () => {
-  const [geoData, setGeoData] = useState({});
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(false);
 
-  useEffect(() => {
-    async function fetchUserData() {
-      const usersIP = await findUsersIPAddress();
-      const geoData = await findGeoLocation(usersIP);
-      if (usersIP == "error" || geoData == "error") {
-        setError(true);
-        return false; // fetching failed.
-      }
-      setGeoData(geoData);
-      setLoading(false);
-      return true; // fetched data succesfully.
-    }
-    fetchUserData();
-  }, []);
-
-  useEffect(() => {
-    async function retryFetchingData() {
-      let nRetreis = 5;
-      async function fetchUserData() {
-        const usersIP = await findUsersIPAddress();
-        const geoData = await findGeoLocation(usersIP);
-        if (usersIP == "error" || geoData == "error") {
-          setError(true);
-          return false; // fetching failed.
-        }
-        setGeoData(geoData);
-        setLoading(false);
-        return true; // fetched data succesfully.
-      }
-
-      while (nRetreis > 0) {
-        let fetchResult = await retryFetchingData();
-        if (fetchResult) {
-          break;
-        }
-        nRetreis--;
-      }
-    }
-  }, [error]);
+  // custom hook for fetching geoData
+  const [geoData, error] = useGeoData(setLoading);
 
   if (loading) {
     return <div>Loading...</div>;
